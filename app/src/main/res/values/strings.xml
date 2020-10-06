@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Bchat</string>
+    <string name="content1">Open Confession is Good for the soul</string>
+    <string name="content2">A confession has to be part of your new life</string>
+    <string name="content3">It is the confession,not the priest,that gives us absolution</string>
+    <string name="content4">We confess our little faults to persuade people that we have no large ones </string>
+    <string name="strwelcome1">Express Yourself</string>
+    <string name="strwelcome2">Recreate Life</string>
+    <string name="strwelcome3">Quiz</string>
+    <string name="strwelcome4">True word</string>
+</resources>

@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title>Drawing</title>
+	<style>
+		*{box-sizing:border-box;}
+		canvas{border:1px solid black;}
+</style>
+</head>
+<body>
+	<script type="text/javascript">
+		var i=0;
+		var xl1=new Array();
+		var yl1=new Array();
+		function point_it(event)
+		{
+			document.getElementById("count").innerHTML=i;
+			var canvas=document.getElementById("line");
+			var context=canvas.getContext("2d");
+			pos_x=event.offsetX;
+			pos_y=event.offsetY;
+			if(i==2) i=0;
+			document.getElementById("crd").innerHTML="X cord:"+pos_x+",Y cord:"+pos_y;
+			i++;
+			xl1[i]=pos_x;
+			yl1[i]=pos_y;
+			if(!canvas.getContext)
+			{ return; }
+			var a=xl1[i-1];
+			var b=yl1[i-1];
+			var c=xl1[i];
+			var d=yl1[i];
+			context.strokeStyle='#000000';
+			context.beginPath();
+			context.moveTo(a,b);
+			context.lineTo(c,d);
+			context.stroke();
+			context.closePath();
+		}
+	</script>
+		<canvas id="line" width="800px" height="600px" onclick="point_it(event)" ></canvas>
+		<p id="count"></p>
+		<p id="crd"></p>
+</body>
+</html>

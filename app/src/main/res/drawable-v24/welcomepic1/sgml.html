@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Introduction To SGML for The W3C Markup Validation Service</title>
+    <link rel="help" href="mailto:www-validator@w3.org" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="start" href="../" title="Home Page" />
+    <link rel="stylesheet" href="../style/base" type="text/css" media="all" />
+    <meta name="keywords" content="HTML, HyperText Markup Language, Validation,
+      W3C Markup Validation Service" />
+    <meta name="description" content="W3C's easy-to-use
+      markup validation service, based on SGML and XML parsers." />
+    
+  </head>
+
+  <body>
+    <div id="banner">
+      <h1 id="title">
+        <a href="http://www.w3.org/">
+          <img alt="W3C Logo" width="110" height="61" id="logo" src="../images/w3c.png" />
+        </a>
+        <a href="../"><span>Markup Validation Service</span></a>
+      </h1>
+      <p id="tagline">Check the markup (HTML, XHTML, …) of Web documents</p>
+    </div>
+
+
+<div class="doc"><a id="skip" name="skip"></a>
+<h2>Introduction to SGML<br /> for the W3C Markup Validator</h2>
+
+    <div>
+      <h3 id="sgml">What is SGML?</h3>
+      <p>
+        SGML stands for Standard Generalized Markup Language. This is
+        actually a slight misnomer, since SGML is actually a
+        <em>meta-language</em> &mdash; that is, a language for writing markup
+        languages.  HTML is a markup language written in SGML &mdash; an "SGML
+        application", to use the terminology.
+      </p>
+      <p>
+        You don't actually have to know much about SGML to use The Validator
+        successfully. If you're interested, though, I recommend TEI's
+        <a href="http://www.tei-c.org/P4X/SG.html">"A Gentle
+        Introduction to SGML"</a> as a good starting point. For in-depth
+        treatment of <acronym title="Standard Generalized Markup Language">SGML</acronym>
+        and <acronym title="HyperText Markup Language">HTML</acronym> we recommend
+        Martin Bryan's "<a href="http://www.is-thought.co.uk/book/home.htm">Web SGML and HTML 4.0 Explained</a>".
+      </p>
+    </div>
+
+    <div>
+      <h3 id="dtd">What is a DTD?</h3>
+      <p>
+        For our purposes, a DTD, or Document Type Definition, is simply a file
+        that defines the syntax of a <a href="#sgml">SGML</a>-based language.
+        The DTDs for
+        <a href="http://www.w3.org/MarkUp/html-spec/">HTML 2.0</a>
+        and <a href="http://www.w3.org/TR/REC-html32">HTML 3.2</a>
+        were written by the HTML Working Group of the
+        <a href="http://www.ietf.org/"><abbr title="Internet Engineering Task Force">IETF</abbr></a>,
+        in collaboration with the <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>.
+        From <a href="http://www.w3.org/TR/html4/">HTML 4.0</a> on (this includes
+        <a href="http://www.w3.org/TR/xhtml1/">XHTML</a>), the standards (both
+        prose and DTDs) have been written by the
+        <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>.
+      </p>
+    </div>
+
+    <div>
+      <h3 id="doctype">What is this <code>DOCTYPE</code> thing The Validator
+        keeps pestering me for?</h3>
+
+      <p>
+        A <code>DOCTYPE</code> is a <a href="#sgml">SGML</a> document type
+        declaration. Its purpose is to tell an SGML parser what
+        <a href="#dtd">DTD</a> it should use to parse the document. It appears
+        as the first line of the document, and has the form:
+        <code>&lt;!DOCTYPE html PUBLIC "quoted string"&gt;</code>
+      </p>
+      <p>
+        The "quoted string" is called a <dfn>public identifier</dfn>; it refers
+        to the desired DTD by a "well-known" name, usually defined by an
+        associated standard.
+      </p>
+      <h4>Why add a DOCTYPE declaration?</h4>
+      <p>
+        The Validator uses an SGML parser, and a <code>DOCTYPE</code> declaration
+        is the most, if not the only way to know which markup language it should 
+        validate documents against.
+      </p>
+      <p>
+        Note that most Web browsers don't actually use an SGML parser, many of them display
+        the documents differently based on the document's <code>DOCTYPE</code>
+        declaration, or lack thereof. This alone is a good reason to always
+        add a <code>DOCTYPE</code> declaration to Web documents.
+      </p>
+      <p>
+        So now you're preparing to add a <code>DOCTYPE</code> to your document.
+        Be sure that the syntax is as described above, and that you use the
+        correct public identifier; otherwise, The Validator will use the wrong
+        DTD, or will be unable to find a DTD at all, and will produce a huge
+        list of absolutely meaningless errors.
+      </p>
+      <h4>How do I add a DOCTYPE declaration?</h4>
+      <p>
+        The W3C QA Activity maintains a <a
+        href="http://www.w3.org/QA/2002/04/valid-dtd-list.html">List of
+        Doctypes</a> that you can choose from, and the <acronym
+        title="Web Design Group">WDG</acronym> maintains a document on
+        "<a href="http://www.htmlhelp.com/tools/validator/doctype.html">Choosing
+        a DOCTYPE</a>".
+      </p>
+      <p class="warning">
+        <strong>WARNING:</strong> Some HTML editors will insert a
+        <code>DOCTYPE</code> declaration for you. Unfortunately, sometimes 
+        thia <code>DOCTYPE</code> does not correspond to the generated HTML,
+        which can sometimes confuse The Validator.
+        If your editor adds a <code>DOCTYPE</code> to your page, you may
+        need to correct it as described above before running your documents through
+        The Validator.
+      </p>
+    </div>
+</div>
+<ul class="navbar" id="menu">
+	<li><a href="../" accesskey="1" title="Go to the Home Page for The W3C Markup Validation Service">Home</a><span> | </span></li>
+	<li><a href="../about.html" title="Information About this Service">About...</a><span> | </span></li>
+	<li><a href="../whatsnew.html" title="The changes made to this service recently">News</a><span> | </span></li>
+	<li><a href="../docs/" accesskey="3" title="Documentation for this Service">Docs</a><span> | </span></li>
+	<li><a href="../docs/help.html" title="Help and answers to frequently asked questions">Help&nbsp;&amp;&nbsp;<abbr title="Frequently Asked Questions">FAQ</abbr></a><span> | </span></li>
+	<li><a href="../feedback.html" accesskey="4" title="How to provide feedback on this service">Feedback</a></li>
+	<li><a href="../contribute.html" title="How to contribute to the validator project">Contribute</a></li>
+</ul>
+
+<div id="footer">
+	<p id="activity_logos">
+		<a href="http://www.w3.org/Status" title="W3C's Open Source, bringing you free Web quality tools and more">
+		<img src="//www.w3.org/Icons/WWW/w3c_home_nb" alt="W3C" width="72" height="47" />
+		<img src="../images/opensource-55x48.png" alt="Open-Source" title="We are building certified Open Source/Free Software. - see www.opensource.org" width="55" height="48" /></a>
+	</p>
+
+	<p id="support_logo">
+		<a href="http://www.w3.org/QA/Tools/Donate">
+			<img src="//www.w3.org/QA/Tools/I_heart_validator" alt="I heart Validator logo" title=" Validators Donation Program" width="80" height="15" />
+		</a>
+	</p>
+	<p id="version_info">
+		This service runs the W3C Markup Validator, <a href="../whatsnew.html#v14"><abbr title="version">v</abbr>1.3+hg</a>.
+	</p>
+
+	<p class="copyright">
+		<a rel="license" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 1994-2013
+		<a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>&reg;
+
+		(<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+		<a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+		<a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>),
+		All Rights Reserved.
+		W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+		<a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+		<a rel="license" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+
+		and <a rel="license" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+
+		rules apply. Your interactions with this site are in accordance
+		with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+		<a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+		statements.
+	</p>
+</div>
+
+
+<script src="//www.w3.org/QA/Tools/w3c-include.js"></script>
+
+  </body>
+</html>
+

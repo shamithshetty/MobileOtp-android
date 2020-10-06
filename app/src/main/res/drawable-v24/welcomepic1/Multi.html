@@ -1,0 +1,533 @@
+<!doctype html>
+<html>
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0".
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
+	<style>
+		* { 
+				box-sizing: border-box; 	
+		} 
+		body { 
+				background-color: #f1f1f1; 
+		} 
+		#regForm { 
+			background-color: #ffffff; 
+			margin:100px auto; 
+			font-family: Raleway; 
+			padding: 40px; 
+			width: 70%; 
+			min-width: 300px; 
+		} 
+		h1 { 
+			text-align: center;   
+		} 
+ 
+		input[type=text],textarea,input[type=password]{ 
+			padding: 10px; 
+			width: 100%; 
+			font-size: 17px; 
+			font-family: Raleway; 
+			border: 1px solid #aaaaaa; 
+		} 
+		section{
+			width:100%;
+		}
+		select{
+			width:90px;
+			height:30px;
+		}
+		section article{
+			float:left;
+			width:33.33%;	
+			min-width:220px;
+			padding:20px;
+		}
+		 @media only screen and (max-width:1024px){
+			section article{
+			width:100%;	
+			padding:0px;
+			}
+		}
+/* Mark input boxes that gets an error on validation: */ 
+		input.invalid { 
+			background-color: #ffdddd; 
+		} 
+ 
+/* Hide all steps by default: */ 
+		.tab { 
+			display: none; 
+		} 
+ 
+		button { 
+			background-color: #4CAF50; 
+			color: #ffffff; 
+			border: none; 
+			padding: 10px 20px; 
+			font-size: 17px; 
+			font-family: Raleway; 
+			cursor: pointer; 
+		} 
+		button:hover { 
+			opacity: 0.8; 
+		} 
+ 
+		#prevBtn { 
+			background-color: #bbbbbb; 
+		} 
+ 
+/* Make circles that indicate the steps of the form: */ 
+		.step { 
+			height: 15px; 
+			width: 15px; 
+			margin: 0 2px; 
+			background-color: #bbbbbb; 
+			border: none;   
+			border-radius: 50%; 
+			display: inline-block; 
+			opacity: 0.5; 
+		} 
+ 
+		.step.active { 
+			opacity: 1; 
+		} 
+ 
+/* Mark the steps that are finished and valid: */ 
+		.step.finish { 
+			background-color: #4CAF50; 
+ 
+		} 
+		.red { 
+			color: red; 
+		} 
+/*gender*/
+	input[type=radio]:checked +label{
+		background-image:linear-gradient(white,black,white);
+		width:70%;
+		font-size:18px;
+	}
+	input[type=radio]{
+		display:none;
+	}
+	.gender{
+		min-width:180px;
+		width:10%;
+		height:30px;
+		float:left;
+		border-radius:30px;
+		margin:5px;
+		border:2px solid #0002;
+		background-color:#0002;
+	}
+	.gender label{
+		width:30%;
+		height:100%;
+		float:left;
+		display:block;
+		text-align:center;
+		font-weight:bold;
+		font-size:14px;
+		padding:3px;
+		color:white;
+	}
+	.bmale{
+		border-radius:30px;
+	}
+	.bfemale{
+		border-radius:30px;
+	}
+	.verify span{
+		background-color:red;
+		width:30px;
+		height:3px;
+		display:inline-block;
+	}
+	</style> 
+</head>
+<body>
+	<form id="regForm" action="form.html">
+	
+		<h1>Shamith Shetty <br>Register</h1>
+		<div class="tab"> Account Set-Up Details: 
+			<p><input type="text" placeholder="User Name..." oninput="validatename(this)" name="username">
+				<span class="red" id="uname"></span></p>
+			    <p><input type="password" placeholder="Password(6-8 characters)..." oninput="isValidPassword(this)" name="password" id="password"><br>
+					<span  class="verify" id="pass">
+						<span class="red"></span>
+						<span class="red"></span>
+						<span class="red"></span>
+						<span class="red"></span>
+					</span></p> 
+				<p><input type="password" id="p" placeholder="Confirm Password..." onblur="verifyPassword(this)">
+				<span class="red" id="vpass"></span></p> 
+		</div>
+		
+		<div class="tab"> Personal details: 
+			<p><input type="text" placeholder="First Name..." maxlength="10" oninput="validatepersonname(this)" name="fname" id="fname">
+				<span id="fnameError" class="red"></span></p>
+			    <p><input type="text" id="lname" placeholder="Last name..." oninput="validatepersonname(this)" name="lname"><span id="lnameError" class="red"></span></p>
+				<p style="width:100px;float:left">Gender :</p>
+					<div class="gender">
+						<input type="radio" name="gender" id="male" value="m" checked />
+						<label class="bmale"for="male">Male</label>
+						<input id="female" type="radio" name="gender" value="f" />
+						<label class="bfemale"  for="female">Female</label>
+					</div>
+				<p><input  type="text"  placeholder="Nationality..." oninput="validatepersonname(this)" name="Nationality"><span id="nationError" class="red"></span></p>
+				<p>
+					<select  id="dd"><option>DD</option></select>
+					<select  id="mm"> <option>MM</option></select>
+					<select  id="yy"><option>YY</option></select>
+				</p>
+				<span id="daterro" class="red"></span>
+		</div>
+		
+		 <div class="tab">Contact Info: 
+			<p><input type="text"  placeholder="E-mail..." onblur="validateemail(this)" id="email" name="email"><span id="em" class="red"></span></p> 
+			<p><input type="text"  placeholder="Phone..." onblur="validphone(this)" id="phone" name="phone"><span id="ph" class="red"></span></p> 
+			<p><textarea placeholder="Address..." oninput="this.className = ''" id="address"></textarea></p> 
+		</div> 
+		<div class="tab">Social Profiles details: 
+			<p><input type="text"  placeholder="Twitter" oninput="this.className = ''" id="twitter" name="twitter"></p> 
+			<p><input type="text"  placeholder="Facebook" oninput="this.className = ''" id="facebook" name="facebook"></p> 
+			<p><input type="text"  placeholder="Google" oninput="this.className = ''" id="google" name="google"></p> 
+		</div> 
+		<div class="tab"> <br>
+			UG
+			<p><input type="text" placeholder="CGPA..." oninput="this.className = ''" id="UG" name="UG"></p>
+			PG
+			<p><input type="text" placeholder="CGPA..." oninput="this.className = ''" id="PG" name="PG"></p> 
+			Project Details:
+			<section>
+				<article><input placeholder="Project 1.." type="text"><textarea placeholder="Discription..."></textarea></article>
+				<article><input placeholder="Project 2.." type="text"><textarea placeholder="Discription..."></textarea></article>
+				<article><input placeholder="Project 3.." type="text"><textarea placeholder="Discription..."></textarea></article>
+			</section> 
+		</div> 
+		<div class="tab"> 
+			<table>
+				<tr>
+					<td id="tname"></td>
+				</tr>
+				<tr>
+					<td id="tgender"></td>
+					<td id="tdob"></td>
+				</tr>
+				<tr>
+					<td id="temail"><td>
+				</tr>
+				<tr>
+					<td id="tphone"><td>
+				</tr>
+				<tr>
+					<td id="taddr"><td>
+				</tr>
+				<tr>
+					<td id="tphone"><td>
+				</tr>
+				<tr>
+					<td id="ttwitter"><td>
+					<td id="tfacebook"></td>
+				</tr>
+				<tr>
+					<td id="tgoogle"><td>
+				</tr>
+				<tr>
+					<td id="tug"><td>
+					<td id="tpg"></td>
+				</tr>
+				<tr>
+					<td id="tproject"><td>
+				</tr>
+			</table>
+			<input type="checkbox" id="agree">&nbsp;I agree<br>
+		</div> 
+		<div style="overflow:auto;clear:left"> 
+			<div style="float:right;"> 
+				<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button> 
+				<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button> 
+			</div>
+		</div>
+		<!-- Circles which indicates the steps of the form: --> 
+		<div style="text-align:center;margin-top:40px;"> 
+			<span class="step"></span> 
+			<span class="step"></span> 
+			<span class="step"></span> 
+			<span class="step"></span> 
+			<span class="step"></span> 
+			<span class="step"></span> 
+		</div> 
+	</form>
+<script> 
+	
+	var currentTab = 0; // Current tab is set to be the first tab (0) 
+	showTab(currentTab); // Display the current tab
+		dob();
+		function display()
+		{
+			document.getElementById("tname").innerHTML="<h1>"+document.getElementById("fname").value+" "+document.getElementById("lname").value+"</h1><br>";
+			if(document.getElementById("male").checked==true)
+				document.getElementById("tgender").innerHTML="Gender &nbsp;&nbsp;: Male";
+			else
+				document.getElementById("tgender").innerHTML="Gender &nbsp;&nbsp;: Female";
+			document.getElementById("tdob").innerHTML="DOB &nbsp;&nbsp;:"+document.getElementById("dd").value+"/"+document.getElementById("mm").value+"/"+document.getElementById("yy").value;
+			document.getElementById("temail").innerHTML="Email &nbsp;&nbsp;:"+document.getElementById("email").value;
+			document.getElementById("tphone").innerHTML="Phone &nbsp;&nbsp;:"+document.getElementById("phone").value;
+			document.getElementById("ttwitter").innerHTML="Twitter &nbsp;&nbsp;:"+document.getElementById("twitter").value;
+			document.getElementById("tfacebook").innerHTML="Facebook&nbsp;&nbsp;:"+document.getElementById("facebook").value;
+			document.getElementById("tgoogle").innerHTML="Google &nbsp;&nbsp;:"+document.getElementById("google").value;
+			document.getElementById("tug").innerHTML="UG CGPA  &nbsp;&nbsp; :"+document.getElementById("UG").value;
+			document.getElementById("tpg").innerHTML="PG CGPA  &nbsp;&nbsp; :"+document.getElementById("PG").value;
+		}
+		function isValidDate() {
+			var day = Number(document.getElementById("dd").value),
+			month = Number(document.getElementById("mm").value),
+			year = Number(document.getElementById("yy").value);
+			var date = new Date();
+			date.setFullYear(year, month - 1, day);
+			// month - 1 since the month index is 0-based (0 = January)
+			if ( (date.getFullYear() == year) && (date.getMonth() == month - 1) && (date.getDate() == day) )
+			{	document.getElementById("daterro").innerHTML="";
+				return true;
+			}
+			document.getElementById("daterro").innerHTML="Invalid Date";
+	return false;
+	}
+	function dob(){
+		var dd=document.getElementById("dd");
+		var mm=document.getElementById("mm");
+		var yy=document.getElementById("yy");
+		var d=new Date();
+		
+		for(var i=1;i<=12;i++)
+		{
+			var option=document.createElement("option");
+			option.value=i;
+			option.text=i;
+			mm.add(option);
+		}
+		for(var i=1;i<=31;i++)
+		{
+			var option=document.createElement("option");
+			option.value=i;
+			option.text=i;
+			dd.add(option);
+			
+		}
+		for(var i=parseInt(d.getFullYear());i>=parseInt(d.getFullYear())-100;i--)
+		{
+			var option=document.createElement("option");
+			option.text=i;
+			option.text=i;
+			yy.add(option);
+		}
+	}
+	
+	function validateemail(email) 
+	{ 
+		email.className = ''; 
+		var Fname=email.value; 
+		x = document.getElementById("em");  
+		  
+		var isvalid=(Fname !== null&& Fname.trim().match(/\S+@\S+\.\S+/) !== null) 
+		 
+		if(!isvalid) 
+		{ 
+			x.innerHTML="Enter a valid email"; 
+		} 
+		else{ 
+			x.innerHTML=""; 
+		}
+    }		
+		function validphone(phone) 
+		{ 
+		phone.className = ''; 
+		var Fname=phone.value; 
+		x = document.getElementById("ph");  
+		  
+		var isvalid=(Fname !== null && Fname.trim().match(/^[0-9]{10}$/) !== null) 
+		 
+		if(!isvalid) 
+		{ 
+			x.innerHTML="Enter a valid phone number"; 
+		} 
+		else{ 
+			x.innerHTML=""; 
+		} 
+  //console.log(isvalid); 
+	} 
+	function validatename(name) 
+	{ 
+		name.className = ''; 
+		var Fname=name.value;   
+		var errelm=document.getElementById("uname"); 
+		var isvalid=(Fname !== null&& Fname.trim().match(/^[A-z]+$/i) !== null) 
+		 
+		if(!isvalid) 
+		{ 
+			errelm.innerHTML="Enter a valid Name"; 
+			name.focus(); 
+	 
+		} 
+		else{ 
+			errelm.innerHTML=""; 
+		} 
+  //console.log(isvalid); 
+	} 
+	function isValidPassword(pass) { 
+		pass.className = '';
+		var count = (pass.value !== null) && (pass.value.trim().match(/^\w{6,8}$/) !== null); 
+		var alph=(pass.value !== null) && (pass.value.trim().match(/[a-z]/) !== null);
+		var dig=(pass.value !== null) && (pass.value.trim().match(/[0-9]/) !== null);
+		var cap=(pass.value !== null) && (pass.value.trim().match(/[A-Z]/) !== null);
+		var x= document.getElementById("pass");
+		var errelm=x.getElementsByTagName("span"); 
+		if(alph) 
+			errelm[0].style.backgroundColor="#80ff80";
+		else 
+			errelm[0].style.backgroundColor="red";
+		if(cap) 
+			errelm[1].style.backgroundColor="#80ff80";
+		else 
+			errelm[1].style.backgroundColor="red";
+		 if(dig) 
+			errelm[2].style.backgroundColor="#80ff80";
+		else 
+			errelm[2].style.backgroundColor="red";
+		if(count) 
+			errelm[3].style.backgroundColor="#80ff80";
+		else 
+			errelm[3].style.backgroundColor="red";
+	} 
+	function verifyPassword(pass) { 
+		pass.className = '';
+		var p=document.getElementById("password"); 
+		var errelm=document.getElementById("vpass"); 		
+		var isTheSame = (pass.value=== p.value); 
+		 
+		if(!isTheSame) 
+		{ 
+			errelm.innerHTML="Enter a valid password"; 
+		} 
+		else{ 
+			errelm.innerHTML=""; 
+		} 	 
+	}
+	function validatepersonname(name) 
+	{ 
+		name.className = ''; 
+		var Fname=name.value;   
+		var ferrelm=document.getElementById("fnameError"); 
+		var lerrelm=document.getElementById("lnameError"); 
+		var nationError=document.getElementById("nationError"); 
+		var isvalid=(Fname !== null&& Fname.trim().match(/^[A-z]+$/i) !== null) 
+		if(!isvalid) 
+		{ 
+			if(name.name=="fname")
+			ferrelm.innerHTML="Enter a valid Name"; 
+			else if(name.name=="lname")
+			lerrelm.innerHTML="Enter a valid Name"; 
+			else
+			nationError.innerHTML="Enter a valid Nationality";
+		} 
+		else{ 
+			if(name.name=="fname")
+			ferrelm.innerHTML=""; 
+			else if(name.name=="lname")
+			lerrelm.innerHTML=""; 
+			else
+			nationError.innerHTML="";
+		} 
+  //console.log(isvalid); 
+	} 
+	function showTab(n) { 
+		// This function will display the specified tab of the form... 
+		var x = document.getElementsByClassName("tab"); 
+		x[n].style.display = "block"; 
+		//... and fix the Previous/Next buttons: 
+		if (n == 0) { 
+			document.getElementById("prevBtn").style.display = "none"; 
+		} else { 
+			document.getElementById("prevBtn").style.display = "inline"; 
+		} 
+		if (n == (x.length - 1)) { 
+		display();
+		document.getElementById("nextBtn").innerHTML = "Submit"; 
+		} else { 
+			document.getElementById("nextBtn").innerHTML = "Next"; 
+		} 
+		//... and run a function that will display the correct step indicator: 
+		fixStepIndicator(n) 
+	} 
+ 
+	function nextPrev(n) { 
+		// This function will figure out which tab to display 
+		var x = document.getElementsByClassName("tab"); 
+		// Exit the function if any field in the current tab is invalid: 
+		if (n == 1 && !validateForm()) return false; 
+		// Hide the current tab: 
+		x[currentTab].style.display = "none"; 
+		// Increase or decrease the current tab by 1: 
+		currentTab = currentTab + n; 
+		// if you have reached the end of the form... 
+		if (currentTab >= x.length && document.getElementById("agree").checked==true) { 
+			// ... the form gets submitted: 
+			document.getElementById("regForm").submit(); 
+		return false; 
+	} 
+  // Otherwise, display the correct tab: 
+  showTab(currentTab); 
+} 
+ 
+	function validateForm() { 
+		// This function deals with validation of the form fields 
+		var x, y, i, valid = true; 
+		if(currentTab==0){
+		 var pp=document.getElementById("p");
+		 verifyPassword(pp);
+		 }
+		if(currentTab==1)
+			if(isValidDate())
+				valid=true;
+		x = document.getElementsByClassName("tab"); 
+		y = x[currentTab].getElementsByTagName("input"); 
+		// A loop that checks every input field in the current tab: 
+		for (i = 0; i < y.length; i++) { 
+			// If a field is empty... 
+			if (y[i].value == "") { 
+				// add an "invalid" class to the field: 
+				y[i].className += " invalid"; 
+				// and set the current valid status to false 
+				valid = false; 
+			} 
+		} 
+		var sp=x[currentTab].getElementsByClassName("red"); 
+		for (i = 0; i < sp.length; i++)
+		{
+			var c=sp[i].innerHTML;
+
+			if(!c=='' || sp[i].style.backgroundColor=="red")
+				valid = false; 
+		}
+		// If the valid status is true, mark the step as finished and valid: 
+		if (valid) { 
+			document.getElementsByClassName("step")[currentTab].className += " finish"; 
+		} 
+		return valid; // return the valid status 
+	} 
+ 
+	function fixStepIndicator(n) { 
+		// This function removes the "active" class of all steps... 
+		var i, x = document.getElementsByClassName("step"); 
+		for (i = 0; i < x.length; i++) { 
+			x[i].className = x[i].className.replace(" active", ""); 
+		} 
+		//... and adds the "active" class on the current step: 
+		x[n].className += " active"; 
+} 
+</script> 
+ 
+  
+</body>
+</html>
+
+ 
