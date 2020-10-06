@@ -4,10 +4,7 @@
  
 best ui for mbl otp login
  
-```
-### Demo
 
- <img src="screenshot.jpg"/>
- 
+ <div align="center"><img src="screenshot.jpg"/></div>
 
  
